@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEBウィルスチェック</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #EFF6FF;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+      padding: 24px 16px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(59, 130, 246, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06);
+      max-width: 520px;
+      width: 100%;
+      padding: 40px 36px 36px;
+    }
+
+    .icon-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .shield-wrapper {
+      width: 72px;
+      height: 72px;
+      background: #EFF6FF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #DBEAFE;
+      color: #1D4ED8;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: #3B82F6;
+      border-radius: 50%;
+    }
+
+    .heading {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1E3A5F;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      text-align: center;
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .url-section {
+      margin-bottom: 28px;
+    }
+
+    .url-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #6B7280;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .url-box {
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+      font-size: 13px;
+      color: #1E3A5F;
+      word-break: break-all;
+      line-height: 1.5;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #E2E8F0;
+      margin-bottom: 20px;
+    }
+
+    .note {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: #6B7280;
+      line-height: 1.6;
+    }
+
+    .note-icon {
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 28px 20px 24px;
+      }
+
+      .heading {
+        font-size: 19px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <div class="icon-area">
+      <div class="shield-wrapper">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 4L6 9.5V20C6 27.5 12.5 34.4 20 36C27.5 34.4 34 27.5 34 20V9.5L20 4Z" fill="#3B82F6" opacity="0.15"/>
+          <path d="M20 4L6 9.5V20C6 27.5 12.5 34.4 20 36C27.5 34.4 34 27.5 34 20V9.5L20 4Z" stroke="#3B82F6" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M14 20.5L18 24.5L26.5 16" stroke="#3B82F6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="badge">
+        <span class="badge-dot"></span>
+        ブロック済み
+      </span>
+    </div>
+
+    <h1 class="heading">WEBウィルスチェック</h1>
+
+    <p class="description">このページからウィルスを検出しました</p>
+
+    <div class="url-section">
+      <div class="url-label">検出URL</div>
+      <div class="url-box">{{URL}}</div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="note">
+      <svg class="note-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="8" cy="8" r="6.5" stroke="#9CA3AF" stroke-width="1.2"/>
+        <path d="M8 7.5V11" stroke="#9CA3AF" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="8" cy="5.5" r="0.75" fill="#9CA3AF"/>
+      </svg>
+      <span>詳細はサーバー管理より確認できます</span>
+    </div>
+
+  </div>
+</body>
+</html>
