@@ -1,0 +1,211 @@
+/* ============================================================
+   WEBウィルスチェック ブロック画面 スタイルシート
+   - ブロック済み通知のため、落ち着いたブルー系カラーで統一
+   - 不安を煽らず「情報通知」として伝えるトーン
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   リセット・基本設定
+   全要素のマージン・パディングを統一し、box-sizingをborder-boxに
+   ------------------------------------------------------------ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ------------------------------------------------------------
+   ページ全体レイアウト
+   コンテンツを画面中央に配置。背景は薄いブルーグレー
+   ------------------------------------------------------------ */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #EFF6FF;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  padding: 24px 16px;
+}
+
+
+/* ------------------------------------------------------------
+   メインカード
+   白い角丸カードで情報をまとめる。ブルー系のシャドウで統一感を出す
+   ------------------------------------------------------------ */
+.card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(59, 130, 246, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06);
+  max-width: 520px;
+  width: 100%;
+  padding: 40px 36px 36px;
+}
+
+
+/* ------------------------------------------------------------
+   アイコンエリア
+   シールドアイコンとバッジを縦に中央揃えで並べる
+   ------------------------------------------------------------ */
+.icon-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* シールドアイコンの背景円 */
+.shield-wrapper {
+  width: 72px;
+  height: 72px;
+  background: #EFF6FF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ------------------------------------------------------------
+   バッジ（ブロック済みラベル）
+   水色の小さなラベルで「処理済み」であることを示す
+   ------------------------------------------------------------ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #DBEAFE;
+  color: #1D4ED8;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+}
+
+/* バッジ内の小丸アクセント */
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  background: #3B82F6;
+  border-radius: 50%;
+}
+
+
+/* ------------------------------------------------------------
+   見出し
+   ページの主題を大きく表示。濃いネイビーで視認性を確保
+   ------------------------------------------------------------ */
+.heading {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1E3A5F;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+
+/* ------------------------------------------------------------
+   説明文
+   ウィルス検出の概要を端的に伝えるテキスト
+   ------------------------------------------------------------ */
+.description {
+  text-align: center;
+  font-size: 15px;
+  color: #374151;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+
+/* ------------------------------------------------------------
+   URL表示エリア
+   検出されたURLをコードブロック風に目立たせる
+   ------------------------------------------------------------ */
+.url-section {
+  margin-bottom: 28px;
+}
+
+/* 「検出URL」ラベル（小見出し） */
+.url-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6B7280;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+/* URLを表示するボックス。等幅フォントで読みやすく */
+.url-box {
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+  font-size: 13px;
+  color: #1E3A5F;
+  word-break: break-all; /* 長いURLでも折り返す */
+  line-height: 1.5;
+}
+
+
+/* ------------------------------------------------------------
+   区切り線
+   URLセクションと補足情報の間に視覚的な区切りを設ける
+   ------------------------------------------------------------ */
+.divider {
+  border: none;
+  border-top: 1px solid #E2E8F0;
+  margin-bottom: 20px;
+}
+
+
+/* ------------------------------------------------------------
+   補足テキスト（サーバー管理リンク）
+   情報アイコンと説明文を横並びに配置
+   ------------------------------------------------------------ */
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.6;
+}
+
+/* 情報アイコン（SVG）を上揃えに微調整 */
+.note-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* サーバー管理へのリンク */
+.note-link {
+  color: #3B82F6;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.note-link:hover {
+  color: #1D4ED8;
+}
+
+
+/* ------------------------------------------------------------
+   レスポンシブ対応（スマートフォン）
+   画面幅が480px以下のときカードの余白と文字サイズを調整
+   ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .card {
+    padding: 28px 20px 24px;
+  }
+
+  .heading {
+    font-size: 19px;
+  }
+}
