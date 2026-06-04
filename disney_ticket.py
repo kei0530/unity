@@ -81,6 +81,19 @@ async def attempt_purchase(page) -> str:
 
     # ── ① 人数 +1 → 次へ ────────────────────────────────────────────
     print("① 人数 +1...")
+    await page.wait_for_timeout(2000)
+
+    # デバッグ: ページ上の全ボタンテキストを出力
+    buttons = await page.locator("button").all()
+    btn_texts = []
+    for b in buttons:
+        txt = (await b.inner_text()).strip()
+        cls = await b.get_attribute("class") or ""
+        aria = await b.get_attribute("aria-label") or ""
+        btn_texts.append(f"  text='{txt}' class='{cls}' aria='{aria}'")
+    print("  [DEBUG] ページ上のボタン一覧:")
+    print("\n".join(btn_texts[:30]))
+
     plus_btn = page.locator(
         'button[data-testid="plus"], button.plus, '
         '[aria-label*="追加"], button:has-text("+")'
