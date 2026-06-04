@@ -77,7 +77,8 @@ async def attempt_purchase(page) -> str:
 
     # ── ① トップページ: 人数を+1して次へ ─────────────────────────────
     print("① ページ読み込み中...")
-    await page.goto(URL, wait_until="networkidle", timeout=30000)
+    await page.goto(URL, wait_until="domcontentloaded", timeout=60000)
+    await page.wait_for_timeout(2000)  # JS描画を待つ
 
     # 人数 + ボタン（最初の + ボタン、または data-action="plus" など）
     # ページ構造を確認しながらクリック
