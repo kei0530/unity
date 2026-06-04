@@ -11,15 +11,33 @@ MAX_RETRIES = 999  # 売り切れ時の最大リトライ回数
 
 
 async def run(playwright):
-    browser = await playwright.chromium.launch(headless=False)
+    browser = await playwright.chromium.launch(
+        headless=False,
+        args=[
+            "--disable-blink-features=AutomationControlled",
+            "--no-sandbox",
+        ],
+    )
     context = await browser.new_context(
         locale="ja-JP",
+        timezone_id="Asia/Tokyo",
+        viewport={"width": 1280, "height": 800},
         user_agent=(
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
             "AppleWebKit/537.36 (KHTML, like Gecko) "
             "Chrome/125.0.0.0 Safari/537.36"
         ),
+        extra_http_headers={
+            "Accept-Language": "ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        },
     )
+    # Playwrightの自動操作フラグを消す
+    await context.add_init_script("""
+        Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+        Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3] });
+        window.chrome = { runtime: {} };
+    """)
     page = await context.new_page()
 
     for attempt in range(1, MAX_RETRIES + 1):
