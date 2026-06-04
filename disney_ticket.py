@@ -40,6 +40,17 @@ async def run(playwright):
     """)
     page = await context.new_page()
 
+    # ── ログイン待機 ──────────────────────────────────────────────────
+    print("\n" + "="*50)
+    print("ブラウザが開きました。")
+    print("ディズニーサイトにログインしてください。")
+    print("ログインが完了したら、ターミナルに戻って")
+    print("Enterキーを押すと自動操作を開始します。")
+    print("="*50)
+    await page.goto("https://www.tokyodisneyresort.jp/", wait_until="domcontentloaded", timeout=30000)
+    input("\n▶ ログイン完了後、Enterキーを押してください...")
+    print("自動操作を開始します！\n")
+
     for attempt in range(1, MAX_RETRIES + 1):
         print(f"\n=== 試行 {attempt} 回目 ===")
         try:
